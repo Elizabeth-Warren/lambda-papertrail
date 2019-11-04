@@ -1,5 +1,3 @@
-'use strict';
-
 const path = require('path');
 const zlib = require('zlib');
 const winston = require('winston');
@@ -32,8 +30,8 @@ module.exports.log = (event, context, callback) => {
       // Forward each of the log messages to Papertrail.
       const logger = new winston.Logger({ transports: [papertrail] });
       json.logEvents.forEach(log => {
-        msg = log.message.trim()
-        if (msg) logger.info(msg)
+        const msg = log.message.trim();
+        if (msg) logger.info(msg);
       });
 
       logger.close();
